@@ -154,10 +154,24 @@ int main() {
         printf("cost: %f\n", cost(model));
     }
 
-    print_xor(model);
+    printf("Xor Model / AND Node\n");
     for(size_t i = 0; i < 2; i++) {
         for (size_t j = 0; j < 2; j++) {
             printf("%zu, %zu == %f\n", i, j, forward(model, i, j));
+        }
+    }
+
+    printf("OR Node\n");
+    for(size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            printf("%zu, %zu == %f\n", i, j, sigmoidf(model.or_w1 * i + model.or_w2 * j + model.or_b));
+        }
+    }
+
+    printf("NAND Node\n");
+    for(size_t i = 0; i < 2; i++) {
+        for (size_t j = 0; j < 2; j++) {
+            printf("%zu, %zu == %f\n", i, j, sigmoidf(model.nand_w1 * i  + model.nand_w2 * j + model.nand_b));
         }
     }
 }
